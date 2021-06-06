@@ -3,13 +3,13 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror
 
 INCLUDESDIR = ./includes
-SRCDIR = ./srcs
+SRCDIR = ./src
 OBJDIR = ./build
 
-INCLUDES = -I$(INCLUDES)
-SRCS = 
-OBJS := $(addprefix $(OBJDIR),$(SRCS:.c=.o))
-SRCS := $(addprefix $(SRCDIR),$(SRCS))
+INCLUDES = -I$(INCLUDESDIR) -I$(LIBFT_PATH)/includes
+SRCS = ft_printf.c 
+OBJS := $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
+SRCS := $(addprefix $(SRCDIR)/,$(SRCS))
 
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
@@ -23,11 +23,11 @@ $(NAME): $(LIBFT) $(OBJS)
 	ar rcs $@ $(OBJS)
 
 $(LIBFT):
-	make -c $(LIBFT_PATH)
+	make -C $(LIBFT_PATH)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	mkdir -p $(OBJDIR)
-	$(CC) $(CFLAGS) $< -c -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) $< -c -o $@
 
 clean:
 	$(RM) $(OBJ)
