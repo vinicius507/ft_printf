@@ -20,19 +20,26 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	ar rcs $@ $(OBJS)
+	@ar rcs $@ $(OBJS)
 
 $(LIBFT):
-	make -C $(LIBFT_PATH)
+	@make -C $(LIBFT_PATH)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-	mkdir -p $(OBJDIR)
-	$(CC) $(CFLAGS) $(INCLUDES) $< -c -o $@
+	@mkdir -p $(OBJDIR)
+	@$(CC) $(CFLAGS) $(INCLUDES) $< -c -o $@
 
 clean:
-	$(RM) $(OBJ)
+	@make clean -C $(LIBFT_PATH)
+	@$(RM) -r $(OBJDIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	@make fclean -C $(LIBFT_PATH)
+	@$(RM) $(NAME)
 
 re: fclean all
+
+test: fclean $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDES) main.c -L. -lftprintf $(LIBFT_FLAGS) -o $@
+	@./$@
+	@$(RM) $@
