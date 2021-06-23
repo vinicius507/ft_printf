@@ -43,3 +43,4 @@ test: fclean $(NAME)
 	@$(CC) $(CFLAGS) $(INCLUDES) main.c -L. -lftprintf $(LIBFT_FLAGS) -o $@
 	@./$@
 	@$(RM) $@
+	@make fclean

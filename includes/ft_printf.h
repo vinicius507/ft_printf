@@ -53,9 +53,6 @@ int		isflag(char c);
 /* Gets the type to be currently formated */
 int8_t	get_type(char f);
 
-/* Gets the current flag */
-t_flags	get_flag(char f, uint8_t reset);
-
 /* Parses the flags and width for the current specifier. */
 uint8_t	flags_parser(char *f, size_t *width);
 
