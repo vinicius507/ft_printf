@@ -65,7 +65,10 @@ uint8_t	flags_parser(char *f, size_t *width)
 			f_ptr++;
 		}
 		else if (ft_isdigit(*f_ptr))
+		{
 			*width = get_width(&f_ptr);
+			get_flag(0, 1);
+		}
 	}
 	return (flags);
 }
