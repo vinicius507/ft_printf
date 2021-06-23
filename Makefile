@@ -7,7 +7,7 @@ SRCDIR = ./src
 OBJDIR = ./build
 
 INCLUDES = -I$(INCLUDESDIR) -I$(LIBFT_PATH)/includes
-SRCS = ft_printf.c 
+SRCS = ft_printf.c utils.c 
 OBJS := $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 SRCS := $(addprefix $(SRCDIR)/,$(SRCS))
 
