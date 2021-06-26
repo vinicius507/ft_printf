@@ -49,9 +49,8 @@ static t_flags	get_flag(char f, uint8_t reset)
 	return (flag);
 }
 
-uint8_t	flags_parser(char *f, size_t *width)
+char	*flags_parser(char *f, uint8_t *flags, size_t *width)
 {
-	uint8_t	flags;
 	char	*f_ptr;
 
 	f_ptr = f;
@@ -61,7 +60,7 @@ uint8_t	flags_parser(char *f, size_t *width)
 	{
 		if (isflag(*f_ptr))
 		{
-			flags += get_flag(*f_ptr, f_ptr == f);
+			*flags += get_flag(*f_ptr, f_ptr == f);
 			f_ptr++;
 		}
 		else if (ft_isdigit(*f_ptr))
@@ -69,6 +68,8 @@ uint8_t	flags_parser(char *f, size_t *width)
 			*width = get_width(&f_ptr);
 			get_flag(0, 1);
 		}
+		else
+			return (NULL);
 	}
-	return (flags);
+	return (f_ptr);
 }

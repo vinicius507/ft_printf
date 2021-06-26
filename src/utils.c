@@ -27,7 +27,7 @@ int	isflag(char c)
 	return (0);
 }
 
-int8_t	get_type(char f)
+t_types	get_type(char f)
 {
 	if (f == 'd' || f == 'i')
 		return (INTEGER);
@@ -39,5 +39,5 @@ int8_t	get_type(char f)
 		return (HEXA_L);
 	else if (f == 'X')
 		return (HEXA_U);
-	return (FT_PRINTF_ERROR);
+	return (TYPE_ERROR);
 }

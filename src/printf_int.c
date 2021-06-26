@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   printf_int.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/06 08:42:32 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/06/06 08:42:32 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/06/25 22:17:58 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/06/25 22:17:58 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+char	*printf_int(uint8_t flags, size_t width, int arg)
 {
-	va_list	ap;
-	char	*buf;
-	char	*var;
+	char	*res;
+	char	*nbr;
 
-	va_start(ap, format);
-	buf = ft_strdup(format);
-	var = ft_strchr(buf, '%');
-	while (var != NULL)
-	{
-	}
-	va_end(ap);
-	return (ft_strlen(buf));
+	return (NULL);
 }

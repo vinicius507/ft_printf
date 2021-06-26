@@ -7,7 +7,7 @@ SRCDIR = ./src
 OBJDIR = ./build
 
 INCLUDES = -I$(INCLUDESDIR) -I$(LIBFT_PATH)/includes
-SRCS = ft_printf.c flags_parser.c utils.c 
+SRCS = ft_printf.c arg_parser.c flags_parser.c utils.c printf_int.c
 OBJS := $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 SRCS := $(addprefix $(SRCDIR)/,$(SRCS))
 
@@ -40,7 +40,7 @@ fclean: clean
 re: fclean all
 
 test: fclean $(NAME)
-	@$(CC) $(CFLAGS) $(INCLUDES) main.c -L. -lftprintf $(LIBFT_FLAGS) -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) main.c -L. -lftprintf $(LIBFT_FLAGS) -o $@ -g
 	@./$@
 	@$(RM) $@
 	@make fclean

@@ -32,6 +32,7 @@ typedef enum e_flags
 
 typedef enum e_types
 {
+	TYPE_ERROR,
 	CHARACTER,
 	STRING,
 	POINTER,
@@ -51,9 +52,17 @@ int		istype(char c);
 int		isflag(char c);
 
 /* Gets the type to be currently formated */
-int8_t	get_type(char f);
+t_types	get_type(char f);
 
-/* Parses the flags and width for the current specifier. */
-uint8_t	flags_parser(char *f, size_t *width);
+/* */
+char	*arg_parser(char *var, va_list ap);
+
+/* Parses the flags and width for the current specifier. On success, returns
+ * the a pointer to the character after the last flag. On failure returns NULL.
+ * */
+char	*flags_parser(char *f, uint8_t *flags, size_t *width);
+
+/* Parses `int` argument. */
+char	*printf_int(uint8_t flags, size_t width, int arg);
 
 #endif
