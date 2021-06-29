@@ -22,6 +22,10 @@ char	*arg_parser(char *var, va_list ap)
 
 	res = NULL;
 	ptr = flags_parser(var, &flags, &width);
+	if (ptr == NULL)
+		return (NULL);
 	type = get_type(*ptr++);
+	if (type == TYPE_ERROR)
+		return (NULL);
 	return (res);
 }
