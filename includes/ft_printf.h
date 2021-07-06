@@ -22,17 +22,28 @@
 /* ft_printf flags. */
 typedef enum e_flags
 {
-	LITERAL			= 0b00000001,
-	ZERO_PAD		= 0b00000010,
-	RIGHT_JUSTIFY	= 0b00000100,
-	PRECISION		= 0b00001000,
-	PRECISION_ARG	= 0b00010000,
-	ARGUMENT		= 0b00100000,
+	ALTERNATE		= 0b00001,
+	ZERO_PAD		= 0b00010,
+	RIGHT_JUSTIFY	= 0b00100,
+	SPACE			= 0b01000,
+	PLUS			= 0b10000,
 }	t_flags;
 
+/* ft_printf length modifiers */
+typedef enum e_length
+{
+	L_NONE,
+	L_L,
+	L_LL,
+	L_H,
+	L_HH,
+}	t_length;
+
+/* ft_printf types */
 typedef enum e_types
 {
 	TYPE_ERROR,
+	LITERAL,
 	CHARACTER,
 	STRING,
 	POINTER,
@@ -48,19 +59,29 @@ int		ft_printf(const char *str, ...);
 /* Verify if character `c` is a type specifier. */
 int		istype(char c);
 
-/* Verify if character `c` is a flag. */
-int		isflag(char c);
-
 /* Gets the type to be currently formated */
 t_types	get_type(char f);
+
+/* Frees up to three pointers. */
+void	kill(void *ptr1, void *ptr2, void *ptr3);
+
+/* Prints and frees buffer and returns number of characters printed. */
+int		print_buffer(char **buf);
 
 /* */
 char	*arg_parser(char *var, va_list ap);
 
-/* Parses the flags and width for the current specifier. On success, returns
- * the a pointer to the character after the last flag. On failure returns NULL.
- * */
-char	*flags_parser(char *f, uint8_t *flags, size_t *width);
+/* Parses the flags of the current specifier. */
+uint8_t	flags_parser(char **f);
+
+/* Parses the minimum field width of the current specifier. */
+int		width_parser(char **f, va_list ap);
+
+/* Parses the precision of the current specifier. */
+int		precision_parser(char **f, va_list ap);
+
+/* Parses the length modifier of the current specifier */
+uint8_t	length_parser(char **f);
 
 /* Parses `int` argument. */
 char	*printf_int(uint8_t flags, size_t width, int arg);

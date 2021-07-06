@@ -1,17 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_int.c                                        :+:      :+:    :+:   */
+/*   precision_parser.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 19:41:43 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/06/28 19:41:43 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/07/06 15:40:54 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/07/06 15:40:54 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*parse_int()
+int	precision_parser(char **f, va_list ap)
 {
+	char	*ptr;
+	int		precision;
+
+	ptr = *f;
+	precision = 0;
+	if (*ptr && *ptr++ != '.')
+		return (-1);
+	if (*ptr && ft_isdigit(*ptr))
+	{
+		precision = ft_atoi(ptr);
+		while (*ptr && ft_isdigit(*ptr))
+			ptr++;
+	}
+	else if (*ptr && *ptr == '*')
+	{
+		precision = va_arg(ap, int);
+		ptr++;
+	}
+	*f = ptr;
+	return (precision);
 }

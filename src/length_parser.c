@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_int.c                                       :+:      :+:    :+:   */
+/*   length_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/25 22:17:58 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/06/25 22:17:58 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/07/06 17:43:04 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/07/06 17:43:04 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*printf_int(uint8_t flags, size_t width, int arg)
+uint8_t	length_parser(char **f)
 {
-	char	*res;
-	char	*nbr;
+	char		*ptr;
+	t_length	length;
 
-	return (NULL);
+	ptr = *f;
+	length = L_NONE;
+	if (!ft_strncmp(ptr, "ll", 2))
+	{
+		length = L_LL;
+		ptr++;
+	}
+	else if (*ptr == 'l')
+		length = L_L;
+	else if (!ft_strncmp(ptr, "hh", 2))
+	{
+		length = L_HH;
+		ptr++;
+	}
+	else if (*ptr == 'h')
+		length = L_H;
+	*f = ++ptr;
+	return (length);
 }

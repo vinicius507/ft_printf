@@ -12,64 +12,39 @@
 
 #include "ft_printf.h"
 
-static size_t	get_width(char **f_ptr)
+static int	isflag(char c)
 {
-	size_t	len;
-	size_t	width;
-
-	len = 1;
-	while (*(*f_ptr + len) && ft_isdigit(*(*f_ptr + len)))
-		len++;
-	width = ft_atoi(*f_ptr);
-	*f_ptr += len;
-	return (width);
+	if (c == '#' || c == '0' || c == '-' || c == ' ' || c == '+')
+		return (1);
+	return (0);
 }
 
-static t_flags	get_flag(char f, uint8_t reset)
+static t_flags	get_flag(char f)
 {
-	static t_flags	flag;
+	t_flags	flag;
 
-	if (reset)
-		flag = 0;
-	if (f == '%')
-		flag = LITERAL;
+	if (f == '#')
+		flag = ALTERNATE;
 	else if (f == '0')
 		flag = ZERO_PAD;
 	else if (f == '-')
 		flag = RIGHT_JUSTIFY;
-	else if (f == '.')
-		flag = PRECISION;
-	else if (f == '*')
-	{
-		if (flag == PRECISION)
-			flag = PRECISION_ARG;
-		else
-			flag = ARGUMENT;
-	}
+	else if (f == ' ')
+		flag = SPACE;
+	else
+		flag = PLUS;
 	return (flag);
 }
 
-char	*flags_parser(char *f, uint8_t *flags, size_t *width)
+uint8_t	flags_parser(char **f)
 {
-	char	*f_ptr;
+	char	*ptr;
+	uint8_t	flags;
 
-	f_ptr = f;
-	*width = 0;
+	ptr = *f;
 	flags = 0;
-	while (*f_ptr && !istype(*f_ptr))
-	{
-		if (isflag(*f_ptr))
-		{
-			*flags += get_flag(*f_ptr, f_ptr == f);
-			f_ptr++;
-		}
-		else if (ft_isdigit(*f_ptr))
-		{
-			*width = get_width(&f_ptr);
-			get_flag(0, 1);
-		}
-		else
-			return (NULL);
-	}
-	return (f_ptr);
+	while (*ptr && isflag(*ptr))
+		flags |= get_flag(*ptr++);
+	*f = ptr;
+	return (flags);
 }
