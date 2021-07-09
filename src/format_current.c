@@ -12,6 +12,8 @@
 
 #include "ft_printf.h"
 
+// FIX: CAN'T USE ft_strjoin
+
 int	format_current(t_arg *arg, char **buf, char *var, va_list ap)
 {
 	char	*start;

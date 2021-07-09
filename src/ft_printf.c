@@ -12,6 +12,8 @@
 
 #include "ft_printf.h"
 
+// FIX: NEED TO FIX arg.printed
+
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
