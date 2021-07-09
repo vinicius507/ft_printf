@@ -12,19 +12,36 @@
 
 #include "ft_printf.h"
 
-char	*arg_parser(char *var, va_list ap)
+static	t_types	get_type(char f)
 {
-	uint8_t	flags;
-	int		width;
-	int		precision;
-	uint8_t	length;
-	t_types	type;
+	if (f == '%')
+		return (LITERAL);
+	else if (f == 'd' || f == 'i')
+		return (INTEGER);
+	else if (f == 'u')
+		return (U_INTEGER);
+	else if (f == 'c')
+		return (CHARACTER);
+	else if (f == 's')
+		return (STRING);
+	else if (f == 'p')
+		return (POINTER);
+	else if (f == 'x')
+		return (HEXA_L);
+	else if (f == 'X')
+		return (HEXA_U);
+	return (TYPE_ERROR);
+}
 
+int	arg_parser(t_arg *arg, char *var, va_list ap)
+{
 	var += 1;
-	flags = flags_parser(&var);
-	width = width_parser(&var, ap);
-	precision = precision_parser(&var, ap);
-	length = length_parser(&var);
-	type = get_type(*var);
-	return (NULL);
+	arg->flags = flags_parser(&var);
+	arg->width = width_parser(&var, ap);
+	arg->precision = precision_parser(&var, ap);
+	arg->modifier = length_parser(&var);
+	arg->type = get_type(*var);
+	if (arg->type == TYPE_ERROR)
+		return (FT_PRINTF_ERROR);
+	return (0);
 }

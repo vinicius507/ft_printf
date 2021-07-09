@@ -18,9 +18,9 @@ int	precision_parser(char **f, va_list ap)
 	int		precision;
 
 	ptr = *f;
-	precision = 0;
 	if (*ptr && *ptr++ != '.')
 		return (-1);
+	precision = 0;
 	if (*ptr && ft_isdigit(*ptr))
 	{
 		precision = ft_atoi(ptr);

@@ -24,7 +24,7 @@ typedef enum e_flags
 {
 	ALTERNATE		= 0b00001,
 	ZERO_PAD		= 0b00010,
-	RIGHT_JUSTIFY	= 0b00100,
+	LEFT_JUSTIFY	= 0b00100,
 	SPACE			= 0b01000,
 	PLUS			= 0b10000,
 }	t_flags;
@@ -53,23 +53,21 @@ typedef enum e_types
 	HEXA_U
 }	t_types;
 
+typedef struct s_arg
+{
+	uint8_t		flags;
+	int			width;
+	int			precision;
+	t_length	modifier;
+	t_types		type;
+	size_t		printed;
+}	t_arg;
+
 /* Write formated output to stdout. */
 int		ft_printf(const char *str, ...);
 
-/* Verify if character `c` is a type specifier. */
-int		istype(char c);
-
-/* Gets the type to be currently formated */
-t_types	get_type(char f);
-
-/* Frees up to three pointers. */
-void	kill(void *ptr1, void *ptr2, void *ptr3);
-
-/* Prints and frees buffer and returns number of characters printed. */
-int		print_buffer(char **buf);
-
-/* */
-char	*arg_parser(char *var, va_list ap);
+/* Parses the arguments of the current specifier. */
+int		arg_parser(t_arg *arg, char *var, va_list ap);
 
 /* Parses the flags of the current specifier. */
 uint8_t	flags_parser(char **f);
@@ -82,8 +80,5 @@ int		precision_parser(char **f, va_list ap);
 
 /* Parses the length modifier of the current specifier */
 uint8_t	length_parser(char **f);
-
-/* Parses `int` argument. */
-char	*printf_int(uint8_t flags, size_t width, int arg);
 
 #endif

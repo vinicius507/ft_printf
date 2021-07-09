@@ -15,28 +15,22 @@
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
+	t_arg	arg;
 	char	*buf;
 	char	*var;
-	char	*start;
-	char	*end;
 
 	va_start(ap, format);
 	buf = ft_strdup(format);
 	var = ft_strchr(buf, '%');
+	arg.printed = var - buf;
 	while (var != NULL)
 	{
-		start = ft_substr(buf, 0, var - buf);
-		end = arg_parser(var + 1, ap);
-		if (start == NULL || end == NULL)
+		if (arg_parser(&arg, var, ap) == FT_PRINTF_ERROR)
 		{
-			kill(start, end, buf);
+			free(buf);
 			return (FT_PRINTF_ERROR);
 		}
-		free(buf);
-		buf = ft_strjoin(start, end);
-		kill(start, end, NULL);
-		var = ft_strchr(buf, '%');
 	}
 	va_end(ap);
-	return (print_buffer(&buf));
+	return (0);
 }

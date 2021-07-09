@@ -28,7 +28,7 @@ static t_flags	get_flag(char f)
 	else if (f == '0')
 		flag = ZERO_PAD;
 	else if (f == '-')
-		flag = RIGHT_JUSTIFY;
+		flag = LEFT_JUSTIFY;
 	else if (f == ' ')
 		flag = SPACE;
 	else
