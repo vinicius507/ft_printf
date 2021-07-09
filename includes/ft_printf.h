@@ -67,7 +67,7 @@ typedef struct s_arg
 int		ft_printf(const char *str, ...);
 
 /* Parses the arguments of the current specifier. */
-int		arg_parser(t_arg *arg, char *var, va_list ap);
+int		arg_parser(t_arg *arg, char **var, va_list ap);
 
 /* Parses the flags of the current specifier. */
 uint8_t	flags_parser(char **f);
@@ -80,5 +80,11 @@ int		precision_parser(char **f, va_list ap);
 
 /* Parses the length modifier of the current specifier */
 uint8_t	length_parser(char **f);
+
+/* Formats current specifier and updates buffer */
+int		format_current(t_arg *arg, char **buf, char *var, va_list ap);
+
+/* Formats `int` type specifier. */
+char	*format_int(char *var, t_arg *arg, va_list ap);
 
 #endif
