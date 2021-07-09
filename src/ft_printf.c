@@ -12,8 +12,6 @@
 
 #include "ft_printf.h"
 
-// FIX: NEED TO FIX arg.printed
-
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
@@ -37,8 +35,8 @@ int	ft_printf(const char *format, ...)
 		}
 		var = ft_strchr(buf + arg.printed, '%');
 	}
-	if (arg.printed > 0)
-		ft_putstr(buf);
+	ft_putstr(buf);
+	safe_free((void **)&buf);
 	va_end(ap);
 	return (arg.printed);
 }

@@ -46,10 +46,9 @@ static char	*get_nbr_str(t_arg *arg, long long int n)
 	return (nbr);
 }
 
-char	*format_int(char *var, t_arg *arg, va_list ap)
+char	*format_int(t_arg *arg, va_list ap)
 {
 	int				nbr;
-	char			*res;
 	char			*nbr_str;
 
 	nbr = get_nbr(arg, va_arg(ap, long long int));
@@ -57,10 +56,8 @@ char	*format_int(char *var, t_arg *arg, va_list ap)
 	if (nbr_str == NULL)
 		return (NULL);
 	if (apply_precision_int(&nbr_str, arg)
-		|| apply_sign(&nbr_str, nbr, arg) || apply_width_int(&nbr_str, arg))
+		|| apply_width_int(&nbr_str, arg) || apply_sign(&nbr_str, nbr, arg))
 		return (NULL);
 	arg->printed += ft_strlen(nbr_str);
-	res = ft_strjoin(nbr_str, var);
-	free(nbr_str);
-	return (res);
+	return (nbr_str);
 }

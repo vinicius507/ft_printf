@@ -66,6 +66,9 @@ typedef struct s_arg
 /* Write formated output to stdout. */
 int		ft_printf(const char *str, ...);
 
+/* Frees a pointer, if not NULL, and assigns NULL to it. */
+void	safe_free(void **ptr);
+
 /* Parses the arguments of the current specifier. */
 int		arg_parser(t_arg *arg, char **var, va_list ap);
 
@@ -85,7 +88,7 @@ uint8_t	length_parser(char **f);
 int		format_current(t_arg *arg, char **buf, char *var, va_list ap);
 
 /* Formats `int` type specifier. */
-char	*format_int(char *var, t_arg *arg, va_list ap);
+char	*format_int(t_arg *arg, va_list ap);
 
 /* Applies precision for int specifier. */
 int		apply_precision_int(char **str, t_arg *arg);

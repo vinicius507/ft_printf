@@ -12,6 +12,13 @@
 
 #include "ft_printf.h"
 
+static int	has_length_modifier(char c)
+{
+	if (c == 'l' || c == 'h')
+		return (1);
+	return (0);
+}
+
 uint8_t	length_parser(char **f)
 {
 	char		*ptr;
@@ -19,6 +26,8 @@ uint8_t	length_parser(char **f)
 
 	ptr = *f;
 	length = L_NONE;
+	if (!has_length_modifier(*ptr))
+		return (length);
 	if (!ft_strncmp(ptr, "ll", 2))
 	{
 		length = L_LL;
