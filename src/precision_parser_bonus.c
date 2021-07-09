@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   precision_parser.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/09 10:50:39 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/07/09 10:50:39 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/07/06 15:40:54 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/07/06 15:40:54 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	safe_free(void **ptr)
+int	precision_parser(char **f, va_list ap)
 {
-	if (*ptr == NULL)
-		return ;
-	free(*ptr);
-	*ptr = NULL;
-}
+	char	*ptr;
+	int		precision;
 
-int	print_buffer(char **buf, t_arg *arg)
-{
-	ft_putstr(*buf);
-	safe_free((void **)buf);
-	return (arg->printed);
+	ptr = *f;
+	if (*ptr && *ptr++ != '.')
+		return (-1);
+	precision = 0;
+	if (*ptr && ft_isdigit(*ptr))
+	{
+		precision = ft_atoi(ptr);
+		while (*ptr && ft_isdigit(*ptr))
+			ptr++;
+	}
+	else if (*ptr && *ptr == '*')
+	{
+		precision = va_arg(ap, int);
+		ptr++;
+	}
+	*f = ptr;
+	return (precision);
 }

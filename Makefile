@@ -6,22 +6,29 @@ INCLUDESDIR = ./includes
 SRCDIR = ./src
 OBJDIR = ./build
 
-INCLUDES = -I$(INCLUDESDIR) -I$(LIBFT_PATH)/includes
-SRCS = ft_printf.c utils.c arg_parser.c flags_parser.c \
-	   width_parser.c precision_parser.c length_parser.c \
-	   format_current.c format_int.c utils_int.c
-OBJS := $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
-SRCS := $(addprefix $(SRCDIR)/,$(SRCS))
-
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
 LIBFT_FLAGS = -L$(LIBFT_PATH) -lft
+
+INCLUDES = -I$(INCLUDESDIR) -I$(LIBFT_PATH)/includes
+SRCS = ft_printf.c utils.c arg_parser.c flags_parser.c \
+	   width_parser.c precision_parser.c format_current.c \
+	   format_int.c utils_int.c
+OBJS := $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
+SRCS := $(addprefix $(SRCDIR)/,$(SRCS))
+
+BONUS_SRCS = ft_printf_bonus.c utils_bonus.c arg_parser_bonus.c flags_parser_bonus.c \
+			 width_parser_bonus.c precision_parser_bonus.c length_parser_bonus.c format_current_bonus.c \
+			 format_int_bonus.c utils_int_bonus.c
+BONUS_OBJS := $(addprefix $(OBJDIR)/,$(BONUS_SRCS:.c=.o))
+BONUS_SRCS := $(addprefix $(SRCDIR)/,$(BONUS_SRCS))
 
 RM = rm -f
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
+	@cp $(LIBFT) $@
 	@ar rcs $@ $(OBJS)
 
 $(LIBFT):
@@ -40,6 +47,10 @@ fclean: clean
 	@$(RM) $(NAME)
 
 re: fclean all
+
+bonus: $(LIBFT) $(BONUS_OBJS)
+	@cp $(LIBFT) $@
+	@ar rcs $(NAME) $(BONUS_OBJS)
 
 test: fclean $(NAME)
 	@$(CC) $(CFLAGS) $(INCLUDES) main.c -L. -lftprintf $(LIBFT_FLAGS) -o $@ -g

@@ -46,7 +46,7 @@ int	apply_width_int(char **str, long long int nbr, t_arg *arg)
 		pad = arg->width - size;
 	else
 		pad = -arg->width - size;
-	if (nbr < 0 && arg->precision < 0)
+	if ((arg->flags & (PLUS | SPACE) || nbr < 0) && arg->precision < 0)
 		pad -= 1;
 	temp = get_pad_w(pad, arg);
 	if (arg->flags & LEFT_JUSTIFY || arg->width < 0)
@@ -97,11 +97,17 @@ int	apply_precision_int(char **str, long long int nbr, t_arg *arg)
 	return (0);
 }
 
-int	apply_sign(char **str, long long int nbr)
+int	apply_sign(char **str, long long int nbr, t_arg *arg)
 {
 	char	*res;
 
-	if (nbr < 0)
+	if (nbr >= 0 && !(arg->flags & (PLUS | SPACE)))
+		return (0);
+	if (arg->flags & PLUS)
+		res = ft_strjoin("+", *str);
+	else if (arg->flags & SPACE)
+		res = ft_strjoin(" ", *str);
+	else if (nbr < 0)
 		res = ft_strjoin("-", *str);
 	else
 		return (0);

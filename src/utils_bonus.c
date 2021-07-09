@@ -19,10 +19,3 @@ void	safe_free(void **ptr)
 	free(*ptr);
 	*ptr = NULL;
 }
-
-int	print_buffer(char **buf, t_arg *arg)
-{
-	ft_putstr(*buf);
-	safe_free((void **)buf);
-	return (arg->printed);
-}

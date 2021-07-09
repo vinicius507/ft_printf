@@ -14,7 +14,7 @@
 
 static int	isflag(char c)
 {
-	if (c == '0' || c == '-')
+	if (c == '#' || c == '0' || c == '-' || c == ' ' || c == '+')
 		return (1);
 	return (0);
 }
@@ -23,10 +23,16 @@ static t_flags	get_flag(char f)
 {
 	t_flags	flag;
 
-	if (f == '0')
+	if (f == '#')
+		flag = ALTERNATE;
+	else if (f == '0')
 		flag = ZERO_PAD;
-	else
+	else if (f == '-')
 		flag = LEFT_JUSTIFY;
+	else if (f == ' ')
+		flag = SPACE;
+	else
+		flag = PLUS;
 	return (flag);
 }
 
