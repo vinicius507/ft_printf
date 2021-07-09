@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_int.c                                       :+:      :+:    :+:   */
+/*   format_int_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/08 22:00:12 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/07/08 22:00:12 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/07/09 18:42:59 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/07/09 18:42:59 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-static int	get_nbr(t_arg *arg, long long int n)
+static long long int	get_nbr(t_arg *arg, long long int n)
 {
 	long long int	nbr;
 
@@ -55,7 +55,7 @@ static char	*get_nbr_str(t_arg *arg, long long int n)
 
 char	*format_int(t_arg *arg, va_list ap)
 {
-	int				nbr;
+	long long int	nbr;
 	char			*nbr_str;
 
 	nbr = get_nbr(arg, va_arg(ap, long long int));

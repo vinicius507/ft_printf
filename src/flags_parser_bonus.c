@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags_parser.c                                     :+:      :+:    :+:   */
+/*   flags_parser_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/23 10:35:16 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/06/23 10:35:16 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/07/09 18:42:42 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/07/09 18:42:42 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 static int	isflag(char c)
 {

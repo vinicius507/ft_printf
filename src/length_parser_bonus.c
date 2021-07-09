@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   length_parser.c                                    :+:      :+:    :+:   */
+/*   length_parser_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/06 17:43:04 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/07/06 17:43:04 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/07/09 18:42:48 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/07/09 18:42:48 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 static int	has_length_modifier(char c)
 {

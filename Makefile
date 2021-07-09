@@ -49,7 +49,7 @@ fclean: clean
 re: fclean all
 
 bonus: $(LIBFT) $(BONUS_OBJS)
-	@cp $(LIBFT) $@
+	@cp $(LIBFT) $(NAME)
 	@ar rcs $(NAME) $(BONUS_OBJS)
 
 test: fclean $(NAME)
