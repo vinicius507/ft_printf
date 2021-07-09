@@ -37,9 +37,8 @@ char	*format_int(t_arg *arg, va_list ap)
 		return (NULL);
 	if (apply_precision_int(&nbr_str, nbr, arg))
 		return (NULL);
-	if ((arg->width > (int)ft_strlen(nbr_str)
-			|| arg->width * -1 > (int)ft_strlen(nbr_str))
-		&& arg->precision >= 0)
+	if (arg->precision >= 0 && (arg->width > (int)ft_strlen(nbr_str)
+			|| arg->width * -1 > (int)ft_strlen(nbr_str)))
 	{
 		if (apply_sign(&nbr_str, nbr)
 			|| apply_width_int(&nbr_str, nbr, arg))
