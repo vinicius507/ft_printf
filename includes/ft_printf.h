@@ -70,17 +70,17 @@ int		precision_parser(char **f, va_list ap);
 /* Formats current specifier and updates buffer. */
 int		format_current(t_arg *arg, char **buf, char *var, va_list ap);
 
+/* Applies minimum field generally. */
+int		apply_width(char **str, t_arg *arg);
+
 /* Formats `int` type specifier. */
 char	*format_int(t_arg *arg, va_list ap);
 
 /* Applies precision for int specifier. */
-int		apply_precision_int(char **str, long long int nbr, t_arg *arg);
-
-/* Applies sign for int specifier. */
-int		apply_sign(char **str, long long int nbr);
+int		apply_precision_int(char **str, t_arg *arg);
 
 /* Applies minimum field width for int specifier. */
-int		apply_width_int(char **str, long long int nbr, t_arg *arg);
+int		apply_width_int(char **str, t_arg *arg);
 
 /* Prints the buffer and returns the number of printed characters. */
 int		print_buffer(char **buf, t_arg *arg);
