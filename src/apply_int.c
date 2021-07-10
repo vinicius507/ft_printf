@@ -26,46 +26,42 @@ static char	*get_pad_w(int size)
 	return (pad);
 }
 
-static int	apply_sign(char **str, int is_neg)
+static int	should_default(t_arg *arg)
 {
-	char	*temp;
-
-	if (!is_neg)
-		return (0);
-	temp = ft_strjoin("-", *str);
-	safe_free((void **)str);
-	*str = temp;
-	if (*str == NULL)
-		return (FT_PRINTF_ERROR);
+	if (arg->flags & LEFT_JUSTIFY || arg->width < 0
+		|| !(arg->flags & ZERO_PAD)
+		|| (arg->flags & ZERO_PAD && arg->precision >= 0))
+		return (1);
 	return (0);
 }
 
 int	apply_width_int(char **str, t_arg *arg)
 {
-	int		pad;
 	int		is_neg;
 	char	*res;
 	char	*temp;
-	char	*nbr;
 
-	if (arg->flags & LEFT_JUSTIFY || arg->width < 0
-		|| !(arg->flags & ZERO_PAD)
-		|| (arg->flags & ZERO_PAD && arg->precision >= 0))
+	if (should_default(arg))
 	{
 		if (apply_width(str, arg))
 			return (FT_PRINTF_ERROR);
 		return (0);
 	}
 	is_neg = **str == '-';
-	nbr = ft_substr(*str, is_neg, ft_strlen(*str));
-	safe_free((void **)str);
-	pad = arg->width - ft_strlen(nbr) - is_neg;
-	temp = get_pad_w(pad);
-	res = ft_strjoin(temp, nbr);
+	temp = get_pad_w(arg->width - ft_strlen(*str));
+	res = ft_strjoin(temp, *str + is_neg);
 	safe_free((void **)&temp);
-	safe_free((void **)&nbr);
+	safe_free((void **)str);
+	if (is_neg)
+	{
+		temp = ft_strjoin("-", res);
+		safe_free((void **)&res);
+		res = temp;
+	}
 	*str = res;
-	return (apply_sign(str, is_neg));
+	if (*str == NULL)
+		return (FT_PRINTF_ERROR);
+	return (0);
 }
 
 static char	*get_pad_p(int size)
