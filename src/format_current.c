@@ -21,6 +21,8 @@ static char	*get_formated_str(t_arg *arg, va_list ap)
 		formated = format_int(arg, ap);
 	else if (arg->type == U_INTEGER)
 		formated = format_uint(arg, ap);
+	else if (arg->type == STRING)
+		formated = format_str(arg, ap);
 	return (formated);
 }
 
