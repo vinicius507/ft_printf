@@ -30,9 +30,6 @@ char	*format_ptr(t_arg *arg, va_list ap)
 	safe_free((void **)&temp);
 	if (ptr_str == NULL)
 		return (NULL);
-	if (apply_precision_ptr(&ptr_str, arg)
-		|| apply_width(&ptr_str, arg))
-		return (NULL);
 	arg->printed += ft_strlen(ptr_str);
 	return (ptr_str);
 }

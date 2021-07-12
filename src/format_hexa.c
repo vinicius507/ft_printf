@@ -22,9 +22,6 @@ char	*format_hexa(t_arg *arg, va_list ap)
 	nbr_str = ft_uitoa_base(nbr, "0123456789abcdef");
 	if (nbr_str == NULL)
 		return (NULL);
-	if (apply_precision_uint(&nbr_str, arg)
-		|| apply_width_uint(&nbr_str, arg))
-		return (NULL);
 	arg->printed += ft_strlen(nbr_str);
 	if (arg->type == HEXA_U)
 	{

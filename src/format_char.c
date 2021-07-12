@@ -18,11 +18,6 @@ char	*format_char(t_arg *arg, va_list ap)
 
 	res = ft_calloc(2, sizeof(char));
 	res[0] = (unsigned char)va_arg(ap, int);
-	if (apply_width_char(&res, arg))
-		return (NULL);
-	if (arg->width == 0)
-		arg->printed += 1;
-	else
-		arg->printed += arg->width;
+	arg->printed += 1;
 	return (res);
 }

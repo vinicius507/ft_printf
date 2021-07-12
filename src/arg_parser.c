@@ -33,19 +33,11 @@ static	t_types	get_type(char f)
 	return (TYPE_ERROR);
 }
 
-int	arg_parser(t_arg *arg, char **var, va_list ap)
+int	arg_parser(t_arg *arg, char **var)
 {
 	char	*ptr;
 
 	ptr = *var + 1;
-	arg->flags = flags_parser(&ptr);
-	arg->width = width_parser(&ptr, ap);
-	if (arg->width < 0)
-	{
-		arg->width *= -1;
-		arg->flags |= LEFT_JUSTIFY;
-	}
-	arg->precision = precision_parser(&ptr, ap);
 	arg->type = get_type(*ptr);
 	*var = ptr + 1;
 	if (arg->type == TYPE_ERROR)

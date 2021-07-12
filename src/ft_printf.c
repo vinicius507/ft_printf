@@ -28,14 +28,15 @@ int	ft_printf(const char *format, ...)
 	while (var != NULL)
 	{
 		arg.printed = var - buf;
-		if (arg_parser(&arg, &var, ap) || format_current(&arg, &buf, var, ap))
+		if (arg_parser(&arg, &var) || format_current(&arg, &buf, var, ap))
 		{
 			arg.printed = FT_PRINTF_ERROR;
 			break ;
 		}
 		var = ft_strchr(buf + arg.printed, '%');
 	}
-	arg.printed += ft_strlen(buf + arg.printed);
+	if (arg.printed != FT_PRINTF_ERROR)
+		arg.printed += ft_strlen(buf + arg.printed);
 	va_end(ap);
 	return (print_buffer(&buf, &arg));
 }

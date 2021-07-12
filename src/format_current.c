@@ -40,11 +40,11 @@ int	format_current(t_arg *arg, char **buf, char *var, va_list ap)
 	char	*start;
 	char	*formated;
 	char	*temp;
-	char	*temp2;
+	char	*end;
 
 	printed = arg->printed;
 	start = ft_memjoin(*buf, "", printed, 1);
-	temp2 = ft_strdup(var);
+	end = ft_strdup(var);
 	safe_free((void **)buf);
 	if (start == NULL)
 		return (FT_PRINTF_ERROR);
@@ -53,8 +53,8 @@ int	format_current(t_arg *arg, char **buf, char *var, va_list ap)
 	safe_free((void **)&start);
 	safe_free((void **)&formated);
 	safe_free((void **)buf);
-	*buf = ft_memjoin(temp, temp2, arg->printed, ft_strlen(temp2) + 1);
+	*buf = ft_memjoin(temp, end, arg->printed, ft_strlen(end) + 1);
 	safe_free((void **)&temp);
-	safe_free((void **)&temp2);
+	safe_free((void **)&end);
 	return (0);
 }

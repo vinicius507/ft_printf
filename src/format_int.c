@@ -21,9 +21,6 @@ char	*format_int(t_arg *arg, va_list ap)
 	nbr_str = ft_itoa(nbr);
 	if (nbr_str == NULL)
 		return (NULL);
-	if (apply_precision_int(&nbr_str, arg)
-		|| apply_width_int(&nbr_str, arg))
-		return (NULL);
 	arg->printed += ft_strlen(nbr_str);
 	return (nbr_str);
 }

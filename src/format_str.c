@@ -24,9 +24,6 @@ char	*format_str(t_arg *arg, va_list ap)
 		str = ft_strdup(temp);
 	if (str == NULL)
 		return (NULL);
-	if (apply_precision_str(&str, arg)
-		|| apply_width(&str, arg))
-		return (NULL);
 	arg->printed += ft_strlen(str);
 	return (str);
 }

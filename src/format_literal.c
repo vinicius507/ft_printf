@@ -19,8 +19,6 @@ char	*format_literal(t_arg *arg)
 	str = ft_strdup("%");
 	if (str == NULL)
 		return (NULL);
-	if (apply_width(&str, arg))
-		return (NULL);
-	arg->printed += ft_strlen(str);
+	arg->printed += 1;
 	return (str);
 }
