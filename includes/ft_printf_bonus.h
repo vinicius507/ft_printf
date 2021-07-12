@@ -69,6 +69,9 @@ int		ft_printf(const char *str, ...);
 /* Frees a pointer, if not NULL, and assigns NULL to it. */
 void	safe_free(void **ptr);
 
+/* Joins two strings and frees them */
+char	*safe_join(char **s1, char **s2);
+
 /* Parses the arguments of the current specifier. */
 int		arg_parser(t_arg *arg, char **var, va_list ap);
 
@@ -87,17 +90,20 @@ uint8_t	length_parser(char **f);
 /* Formats current specifier and updates buffer. */
 int		format_current(t_arg *arg, char **buf, char *var, va_list ap);
 
+/* Applies minimum field generally. */
+int		apply_width(char **str, t_arg *arg);
+
 /* Formats `int` type specifier. */
 char	*format_int(t_arg *arg, va_list ap);
 
-/* Applies precision for int specifier. */
-int		apply_precision_int(char **str, long long int nbr, t_arg *arg);
+/* Verifies if int has sign. */
+int		int_has_sign(char *str);
 
-/* Applies sign for int specifier. */
-int		apply_sign(char **str, long long int nbr, t_arg *arg);
+/* Applies precision for int specifier. */
+int		apply_precision_int(char **str, t_arg *arg);
 
 /* Applies minimum field width for int specifier. */
-int		apply_width_int(char **str, long long int nbr, t_arg *arg);
+int		apply_width_int(char **str, t_arg *arg);
 
 /* Prints the buffer and returns the number of printed characters. */
 int		print_buffer(char **buf, t_arg *arg);
