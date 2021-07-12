@@ -89,7 +89,7 @@ int	apply_precision_int(char **str, t_arg *arg)
 	is_neg = **str == '-';
 	temp = get_pad_p(arg->precision - ft_strlen(*str) + is_neg);
 	if (arg->precision == 0 && ft_strncmp(*str, "0", ft_strlen(*str)) == 0)
-		res = ft_strjoin(temp, "");
+		res = ft_strdup("");
 	else
 		res = ft_strjoin(temp, (*str) + is_neg);
 	safe_free((void **)&temp);
