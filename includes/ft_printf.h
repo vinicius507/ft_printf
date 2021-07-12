@@ -19,13 +19,14 @@
 
 # define FT_PRINTF_ERROR -1
 
-# ifdef __linux__
-#  define NULL_STR "(nil)"
-# elif defined(__APPLE__)
-#  define NULL_STR "0x0"
-# else
-#  define NULL_STR "(null)"
-# endif
+# define NULL_STR "0x0"
+/* # ifdef __linux__ */
+/* #  define NULL_STR "(nil)" */
+/* # elif defined(__APPLE__) */
+/* #  define NULL_STR "0x0" */
+/* # else */
+/* #  define NULL_STR "(null)" */
+/* # endif */
 
 /* ft_printf flags. */
 typedef enum e_flags
@@ -95,6 +96,9 @@ char	*format_str(t_arg *arg, va_list ap);
 
 /* Formats `char` type specifier. */
 char	*format_char(t_arg *arg, va_list ap);
+
+/* Formats `%` type specifier. */
+char	*format_literal(t_arg *arg);
 
 /* Formats `void *` type specifier. */
 char	*format_ptr(t_arg *arg, va_list ap);
