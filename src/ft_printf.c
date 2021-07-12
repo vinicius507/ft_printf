@@ -23,8 +23,6 @@ int	ft_printf(const char *format, ...)
 	buf = ft_strdup(format);
 	var = ft_strchr(buf, '%');
 	arg.printed = 0;
-	if (var == NULL)
-		arg.printed = ft_strlen(buf);
 	while (var != NULL)
 	{
 		arg.printed = var - buf;
