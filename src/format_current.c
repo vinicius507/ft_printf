@@ -17,7 +17,12 @@ static char	*get_formated_str(t_arg *arg, va_list ap)
 	char	*formated;
 
 	formated = NULL;
-	if (arg->type == INTEGER)
+	if (arg->type == LITERAL)
+	{
+		formated = ft_strdup("%");
+		arg->printed += 1;
+	}
+	else if (arg->type == INTEGER)
 		formated = format_int(arg, ap);
 	else if (arg->type == U_INTEGER)
 		formated = format_uint(arg, ap);
