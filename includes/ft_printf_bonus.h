@@ -96,6 +96,9 @@ int		apply_width(char **str, t_arg *arg);
 /* Formats `int` type specifier. */
 char	*format_int(t_arg *arg, va_list ap);
 
+/* Formats `unsigned int` type specifier. */
+char	*format_uint(t_arg *arg, va_list ap);
+
 /* Verifies if int has sign. */
 int		int_has_sign(char *str);
 
@@ -104,6 +107,12 @@ int		apply_precision_int(char **str, t_arg *arg);
 
 /* Applies minimum field width for int specifier. */
 int		apply_width_int(char **str, t_arg *arg);
+
+/* Applies precision for int specifier. */
+int		apply_precision_uint(char **str, t_arg *arg);
+
+/* Applies minimum field width for int specifier. */
+int		apply_width_uint(char **str, t_arg *arg);
 
 /* Prints the buffer and returns the number of printed characters. */
 int		print_buffer(char **buf, t_arg *arg);

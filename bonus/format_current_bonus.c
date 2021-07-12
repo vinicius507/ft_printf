@@ -19,6 +19,8 @@ static char	*get_formated_str(t_arg *arg, va_list ap)
 	formated = NULL;
 	if (arg->type == INTEGER)
 		formated = format_int(arg, ap);
+	else if (arg->type == U_INTEGER)
+		formated = format_uint(arg, ap);
 	return (formated);
 }
 
