@@ -79,6 +79,9 @@ char	*format_int(t_arg *arg, va_list ap);
 /* Formats `unsigned int` type specifier. */
 char	*format_uint(t_arg *arg, va_list ap);
 
+/* Formats `unsigned hexa` type specifier. */
+char	*format_hexa(t_arg *arg, va_list ap);
+
 /* Formats `str` type specifier. */
 char	*format_str(t_arg *arg, va_list ap);
 
