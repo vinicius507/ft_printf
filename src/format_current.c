@@ -25,6 +25,8 @@ static char	*get_formated_str(t_arg *arg, va_list ap)
 		formated = format_hexa(arg, ap);
 	else if (arg->type == STRING)
 		formated = format_str(arg, ap);
+	else if (arg->type == CHARACTER)
+		formated = format_char(arg, ap);
 	return (formated);
 }
 

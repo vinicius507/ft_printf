@@ -14,7 +14,8 @@ INCLUDES = -I$(INCLUDESDIR) -I$(LIBFT_PATH)/includes
 SRCS = ft_printf.c utils.c arg_parser.c flags_parser.c \
 	   width_parser.c precision_parser.c format_current.c \
 	   format_int.c apply.c apply_int.c format_uint.c \
-	   apply_uint.c format_str.c apply_str.c format_hexa.c
+	   apply_uint.c format_str.c apply_str.c format_hexa.c \
+	   format_char.c apply_char.c
 OBJS := $(addprefix $(OBJDIR)/,$(SRCS:.c=.o))
 SRCS := $(addprefix $(SRCDIR)/,$(SRCS))
 

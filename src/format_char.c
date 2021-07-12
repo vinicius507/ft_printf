@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   format_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/09 10:50:39 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/07/09 10:50:39 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/07/12 15:47:14 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/07/12 15:47:14 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	safe_free(void **ptr)
+char	*format_char(t_arg *arg, va_list ap)
 {
-	if (*ptr == NULL)
-		return ;
-	free(*ptr);
-	*ptr = NULL;
-}
+	char	*res;
 
-int	print_buffer(char **buf, t_arg *arg)
-{
-	write(1, *buf, arg->printed);
-	safe_free((void **)buf);
-	return (arg->printed);
+	res = ft_calloc(2, sizeof(char));
+	res[0] = (unsigned char)va_arg(ap, int);
+	if (apply_width_char(&res, arg))
+		return (NULL);
+	if (arg->width == 0)
+		arg->printed += 1;
+	else if (arg->width < 0)
+		arg->printed += -arg->width;
+	else
+		arg->printed += arg->width;
+	return (res);
 }

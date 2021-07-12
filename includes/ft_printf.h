@@ -85,6 +85,9 @@ char	*format_hexa(t_arg *arg, va_list ap);
 /* Formats `str` type specifier. */
 char	*format_str(t_arg *arg, va_list ap);
 
+/* Formats `char` type specifier. */
+char	*format_char(t_arg *arg, va_list ap);
+
 /* Applies precision for int specifier. */
 int		apply_precision_int(char **str, t_arg *arg);
 
@@ -99,6 +102,9 @@ int		apply_width_uint(char **str, t_arg *arg);
 
 /* Apply precision for str specifier */
 int		apply_precision_str(char **str, t_arg *arg);
+
+/* Applies minimum field width for char specifier. */
+int		apply_width_char(char **str, t_arg *arg);
 
 /* Prints the buffer and returns the number of printed characters. */
 int		print_buffer(char **buf, t_arg *arg);
