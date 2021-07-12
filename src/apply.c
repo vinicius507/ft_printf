@@ -32,11 +32,6 @@ int	apply_width(char **str, t_arg *arg)
 	char	*temp;
 
 	size = ft_strlen(*str);
-	if (arg->width < 0)
-	{
-		arg->width *= -1;
-		arg->flags |= LEFT_JUSTIFY;
-	}
 	pad = arg->width - size;
 	if (pad <= 0)
 		return (0);

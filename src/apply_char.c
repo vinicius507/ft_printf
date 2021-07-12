@@ -37,13 +37,8 @@ int	apply_width_char(char **str, t_arg *arg)
 			return (FT_PRINTF_ERROR);
 		return (0);
 	}
-	if (arg->width < 0)
-	{
-		arg->flags |= LEFT_JUSTIFY;
-		arg->width *= -1;
-	}
 	temp = get_pad_w(arg->width - 1);
-	if (arg->width < 0 || arg->flags & LEFT_JUSTIFY)
+	if (arg->flags & LEFT_JUSTIFY)
 		res = ft_memjoin(*str, temp, 1, ft_strlen(temp) + 1);
 	else
 		res = ft_memjoin(temp, *str, ft_strlen(temp), 2);

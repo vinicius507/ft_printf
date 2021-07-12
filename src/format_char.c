@@ -22,8 +22,6 @@ char	*format_char(t_arg *arg, va_list ap)
 		return (NULL);
 	if (arg->width == 0)
 		arg->printed += 1;
-	else if (arg->width < 0)
-		arg->printed += -arg->width;
 	else
 		arg->printed += arg->width;
 	return (res);
