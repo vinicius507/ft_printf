@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_str_bonus.c                                 :+:      :+:    :+:   */
+/*   format_ptr_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/12 14:09:08 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/07/12 14:09:08 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/07/12 19:28:06 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/07/12 19:28:06 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-char	*format_str(t_arg *arg, va_list ap)
+char	*format_ptr(t_arg *arg, va_list ap)
 {
-	char	*str;
-	char	*temp;
+	unsigned long int	ptr;
+	char				*ptr_str;
+	char				*temp;
 
-	temp = (char *)va_arg(ap, const char *);
-	if (temp == NULL)
-		str = ft_strdup("(null)");
+	ptr = (unsigned long int)va_arg(ap, void *);
+	temp = NULL;
+	if (ptr != 0)
+	{
+		temp = ft_ultoa_base(ptr, "0123456789abcdef");
+		ptr_str = ft_strjoin("0x", temp);
+	}
 	else
-		str = ft_strdup(temp);
+		ptr_str = ft_strdup(NULL_STR);
 	safe_free((void **)&temp);
-	if (str == NULL)
+	if (ptr_str == NULL)
 		return (NULL);
-	if (apply_precision_str(&str, arg)
-		|| apply_width(&str, arg))
+	if (apply_precision_ptr(&ptr_str, arg))
 		return (NULL);
-	arg->printed += ft_strlen(str);
-	return (str);
+	arg->printed += ft_strlen(ptr_str);
+	return (ptr_str);
 }

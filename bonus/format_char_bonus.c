@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_str_bonus.c                                 :+:      :+:    :+:   */
+/*   format_char_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/12 14:09:08 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/07/12 14:09:08 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/07/12 19:22:27 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/07/12 19:22:27 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-char	*format_str(t_arg *arg, va_list ap)
+char	*format_char(t_arg *arg, va_list ap)
 {
-	char	*str;
-	char	*temp;
+	char	*res;
 
-	temp = (char *)va_arg(ap, const char *);
-	if (temp == NULL)
-		str = ft_strdup("(null)");
+	res = ft_calloc(2, sizeof(char));
+	res[0] = (unsigned char)va_arg(ap, int);
+	if (apply_width_char(&res, arg))
+		return (NULL);
+	if (arg->width > 0)
+		arg->printed += arg->width;
 	else
-		str = ft_strdup(temp);
-	safe_free((void **)&temp);
-	if (str == NULL)
-		return (NULL);
-	if (apply_precision_str(&str, arg)
-		|| apply_width(&str, arg))
-		return (NULL);
-	arg->printed += ft_strlen(str);
-	return (str);
+		arg->printed += 1;
+	return (res);
 }

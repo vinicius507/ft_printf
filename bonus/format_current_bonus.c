@@ -17,12 +17,20 @@ static char	*get_formated_str(t_arg *arg, va_list ap)
 	char	*formated;
 
 	formated = NULL;
-	if (arg->type == INTEGER)
+	if (arg->type == LITERAL)
+		formated = format_literal(arg);
+	else if (arg->type == INTEGER)
 		formated = format_int(arg, ap);
 	else if (arg->type == U_INTEGER)
 		formated = format_uint(arg, ap);
 	else if (arg->type == STRING)
 		formated = format_str(arg, ap);
+	else if (arg->type == CHARACTER)
+		formated = format_char(arg, ap);
+	else if (arg->type == POINTER)
+		formated = format_ptr(arg, ap);
+	else if (arg->type == HEXA_L || arg->type == HEXA_U)
+		formated = format_hexa(arg, ap);
 	return (formated);
 }
 

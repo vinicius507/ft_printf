@@ -43,7 +43,7 @@ int	int_has_sign(char *str)
 
 int	print_buffer(char **buf, t_arg *arg)
 {
-	ft_putstr(*buf);
+	write(1, *buf, arg->printed);
 	safe_free((void **)buf);
 	return (arg->printed);
 }

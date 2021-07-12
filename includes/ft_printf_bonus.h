@@ -19,6 +19,14 @@
 
 # define FT_PRINTF_ERROR -1
 
+# ifdef __linux__
+#  define NULL_STR "(nil)"
+# elif defined(__APPLE__)
+#  define NULL_STR "0x0"
+# else
+#  define NULL_STR "(null)"
+# endif
+
 /* ft_printf flags. */
 typedef enum e_flags
 {
@@ -60,7 +68,7 @@ typedef struct s_arg
 	int			precision;
 	t_length	modifier;
 	t_types		type;
-	size_t		printed;
+	ssize_t		printed;
 }	t_arg;
 
 /* Write formated output to stdout. */
@@ -102,23 +110,44 @@ char	*format_uint(t_arg *arg, va_list ap);
 /* Formats `str` type specifier. */
 char	*format_str(t_arg *arg, va_list ap);
 
-/* Verifies if int has sign. */
+/* Formats `char` type specifier. */
+char	*format_char(t_arg *arg, va_list ap);
+
+/* Formats `%` type specifier. */
+char	*format_literal(t_arg *arg);
+
+/* Formats `void *` type specifier. */
+char	*format_ptr(t_arg *arg, va_list ap);
+
+/* Formats `hexadecimal int` type specifier. */
+char	*format_hexa(t_arg *arg, va_list ap);
+
+/* Verifies if `int` has sign. */
 int		int_has_sign(char *str);
 
-/* Applies precision for int specifier. */
+/* Applies precision for `int` specifier. */
 int		apply_precision_int(char **str, t_arg *arg);
 
-/* Applies minimum field width for int specifier. */
+/* Applies minimum field width for `int` specifier. */
 int		apply_width_int(char **str, t_arg *arg);
 
-/* Applies precision for int specifier. */
+/* Applies precision for `int` specifier. */
 int		apply_precision_uint(char **str, t_arg *arg);
 
-/* Applies minimum field width for int specifier. */
+/* Applies minimum field width for `int` specifier. */
 int		apply_width_uint(char **str, t_arg *arg);
 
-/* Apply precision for str specifier */
+/* Apply precision for `str` specifier. */
 int		apply_precision_str(char **str, t_arg *arg);
+
+/* Apply minimum field width for `char` specifier. */
+int		apply_width_char(char **str, t_arg *arg);
+
+/* Apply precision for `void *` specifier. */
+int		apply_precision_ptr(char **str, t_arg *arg);
+
+/* Apply alternate flag for `hexadecimal int` specifier. */
+int		apply_alternate(char **str, t_arg *arg);
 
 /* Prints the buffer and returns the number of printed characters. */
 int		print_buffer(char **buf, t_arg *arg);
