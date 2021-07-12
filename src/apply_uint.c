@@ -12,6 +12,15 @@
 
 #include "ft_printf.h"
 
+static int	should_default(t_arg *arg)
+{
+	if (arg->flags & LEFT_JUSTIFY || arg->width < 0
+		|| !(arg->flags & ZERO_PAD)
+		|| (arg->flags & ZERO_PAD && arg->precision >= 0))
+		return (1);
+	return (0);
+}
+
 static char	*get_pad_w(int size)
 {
 	char	*pad;
@@ -24,15 +33,6 @@ static char	*get_pad_w(int size)
 	while (size--)
 		pad[size] = '0';
 	return (pad);
-}
-
-static int	should_default(t_arg *arg)
-{
-	if (arg->flags & LEFT_JUSTIFY || arg->width < 0
-		|| !(arg->flags & ZERO_PAD)
-		|| (arg->flags & ZERO_PAD && arg->precision >= 0))
-		return (1);
-	return (0);
 }
 
 int	apply_width_uint(char **str, t_arg *arg)
