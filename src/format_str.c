@@ -14,9 +14,14 @@
 
 char	*format_str(t_arg *arg, va_list ap)
 {
-	char	*str;
+	char		*str;
+	const char	*temp;
 
-	str = ft_strdup(va_arg(ap, const char *));
+	temp = va_arg(ap, const char *);
+	if (temp == NULL)
+		str = ft_strdup("(null)");
+	else
+		str = ft_strdup(temp);
 	if (str == NULL)
 		return (NULL);
 	if (apply_precision_str(&str, arg)
