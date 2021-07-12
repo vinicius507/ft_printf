@@ -19,6 +19,14 @@
 
 # define FT_PRINTF_ERROR -1
 
+# ifdef __linux__
+#  define NULL_STR "(nil)"
+# elif defined(__APPLE__)
+#  define NULL_STR "0x0"
+# else
+#  define NULL_STR "(null)"
+# endif
+
 /* ft_printf flags. */
 typedef enum e_flags
 {
@@ -88,23 +96,29 @@ char	*format_str(t_arg *arg, va_list ap);
 /* Formats `char` type specifier. */
 char	*format_char(t_arg *arg, va_list ap);
 
-/* Applies precision for int specifier. */
+/* Formats `void *` type specifier. */
+char	*format_ptr(t_arg *arg, va_list ap);
+
+/* Applies precision for `int` specifier. */
 int		apply_precision_int(char **str, t_arg *arg);
 
-/* Applies minimum field width for int specifier. */
+/* Applies minimum field width for `int` specifier. */
 int		apply_width_int(char **str, t_arg *arg);
 
-/* Applies precision for unsigned int specifier. */
+/* Applies precision for `unsigned int` specifier. */
 int		apply_precision_uint(char **str, t_arg *arg);
 
-/* Applies minimum field width for unsigned int specifier. */
+/* Applies minimum field width for `unsigned int` specifier. */
 int		apply_width_uint(char **str, t_arg *arg);
 
-/* Apply precision for str specifier */
+/* Apply precision for `str` specifier */
 int		apply_precision_str(char **str, t_arg *arg);
 
-/* Applies minimum field width for char specifier. */
+/* Applies minimum field width for `char` specifier. */
 int		apply_width_char(char **str, t_arg *arg);
+
+/* Apply precision for `void *` specifier */
+int		apply_precision_ptr(char **str, t_arg *arg);
 
 /* Prints the buffer and returns the number of printed characters. */
 int		print_buffer(char **buf, t_arg *arg);
