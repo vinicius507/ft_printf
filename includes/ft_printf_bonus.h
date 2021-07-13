@@ -149,6 +149,9 @@ int		apply_precision_ptr(char **str, t_arg *arg);
 /* Apply alternate flag for `hexadecimal int` specifier. */
 int		apply_alternate(char **str, t_arg *arg);
 
+/* Apply minimum field width for `hexadecimal int` specifier. */
+int		apply_width_hexa(char **str, t_arg *arg);
+
 /* Prints the buffer and returns the number of printed characters. */
 int		print_buffer(char **buf, t_arg *arg);
 

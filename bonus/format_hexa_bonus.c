@@ -59,7 +59,7 @@ char	*format_hexa(t_arg *arg, va_list ap)
 	if (nbr_str == NULL)
 		return (NULL);
 	if (apply_precision_uint(&nbr_str, arg) || apply_alternate(&nbr_str, arg)
-		|| apply_width_uint(&nbr_str, arg))
+		|| apply_width_hexa(&nbr_str, arg))
 		return (NULL);
 	arg->printed += ft_strlen(nbr_str);
 	if (arg->type == HEXA_U)
