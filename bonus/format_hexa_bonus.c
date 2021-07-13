@@ -48,6 +48,21 @@ static char	*get_nbr_str(t_arg *arg, unsigned long long int n)
 	return (nbr);
 }
 
+static int	apply_alternate(char **str, t_arg *arg)
+{
+	char	*res;
+
+	if (!(arg->flags & ALTERNATE)
+		|| ft_strncmp("0", *str, ft_strlen(*str)) == 0)
+		return (0);
+	res = ft_strjoin("0x", *str);
+	safe_free((void **)str);
+	*str = res;
+	if (*str == NULL)
+		return (FT_PRINTF_ERROR);
+	return (0);
+}
+
 char	*format_hexa(t_arg *arg, va_list ap)
 {
 	unsigned long long int	nbr;
@@ -58,7 +73,7 @@ char	*format_hexa(t_arg *arg, va_list ap)
 	nbr_str = get_nbr_str(arg, nbr);
 	if (nbr_str == NULL)
 		return (NULL);
-	if (apply_precision_uint(&nbr_str, arg) || apply_alternate(&nbr_str, arg)
+	if (apply_alternate(&nbr_str, arg) || apply_precision_hexa(&nbr_str, arg)
 		|| apply_width_hexa(&nbr_str, arg))
 		return (NULL);
 	arg->printed += ft_strlen(nbr_str);

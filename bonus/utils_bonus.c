@@ -41,6 +41,13 @@ int	int_has_sign(char *str)
 	return (0);
 }
 
+int	hexa_has_alternate(char *str)
+{
+	if (ft_strncmp("0x", str, 2) == 0)
+		return (1);
+	return (0);
+}
+
 int	print_buffer(char **buf, t_arg *arg)
 {
 	write(1, *buf, arg->printed);
