@@ -22,7 +22,6 @@ char	*format_str(t_arg *arg, va_list ap)
 		str = ft_strdup("(null)");
 	else
 		str = ft_strdup(temp);
-	safe_free((void **)&temp);
 	if (str == NULL)
 		return (NULL);
 	if (apply_precision_str(&str, arg)
