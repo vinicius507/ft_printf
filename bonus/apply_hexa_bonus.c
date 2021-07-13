@@ -86,11 +86,11 @@ int	apply_precision_hexa(char **str, t_arg *arg)
 	if (arg->precision < 0)
 		return (0);
 	start = hexa_has_alternate(*str) * 2;
-	temp = get_pad_p(arg->precision - ft_strlen(*str)) + start;
+	temp = get_pad_p(arg->precision - ft_strlen(*str) + start);
 	if (arg->precision == 0 && ft_strncmp(*str, "0", ft_strlen(*str)) == 0)
 		res = ft_strdup("");
 	else
-		res = ft_strjoin(temp, (*str));
+		res = ft_strjoin(temp, (*str + start));
 	safe_free((void **)&temp);
 	safe_free((void **)str);
 	if (start)

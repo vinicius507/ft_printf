@@ -137,23 +137,26 @@ int		apply_precision_uint(char **str, t_arg *arg);
 /* Applies minimum field width for `int` specifier. */
 int		apply_width_uint(char **str, t_arg *arg);
 
-/* Apply precision for `str` specifier. */
+/* Applies precision for `str` specifier. */
 int		apply_precision_str(char **str, t_arg *arg);
 
-/* Apply minimum field width for `char` specifier. */
+/* Applies minimum field width for `char` specifier. */
 int		apply_width_char(char **str, t_arg *arg);
 
-/* Apply precision for `void *` specifier. */
+/* Applies precision for `void *` specifier. */
 int		apply_precision_ptr(char **str, t_arg *arg);
 
-/* Apply minimum field width for `hexadecimal int` specifier. */
+/* Applies minimum field width for `hexadecimal int` specifier. */
 int		apply_width_hexa(char **str, t_arg *arg);
 
-/* Apply precision for `hexadecimal int` specifier. */
+/* Applies precision for `hexadecimal int` specifier. */
 int		apply_precision_hexa(char **str, t_arg *arg);
 
 /* Verifies if `hexadeimal int` has 0x */
 int		hexa_has_alternate(char *str);
+
+/* Applies minimum field width for `%` specifier. */
+int		apply_width_literal(char **str, t_arg *arg);
 
 /* Prints the buffer and returns the number of printed characters. */
 int		print_buffer(char **buf, t_arg *arg);
