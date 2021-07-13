@@ -14,7 +14,8 @@
 
 static int	should_default(t_arg *arg)
 {
-	if (!(arg->flags & ZERO_PAD))
+	if (!(arg->flags & ZERO_PAD)
+		|| arg->flags & LEFT_JUSTIFY)
 		return (1);
 	return (0);
 }
