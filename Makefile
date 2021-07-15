@@ -22,7 +22,7 @@ BONUS_SRCS = ft_printf_bonus.c utils_bonus.c arg_parser_bonus.c flags_parser_bon
 			 format_int_bonus.c apply_bonus.c apply_int_bonus.c format_uint_bonus.c  \
 			 apply_uint_bonus.c format_str_bonus.c apply_str_bonus.c format_char_bonus.c \
 			 apply_char_bonus.c format_ptr_bonus.c apply_ptr_bonus.c format_hexa_bonus.c \
-			 apply_hexa_bonus.c format_literal_bonus.c apply_hexa_bonus.c apply_literal_bonus.c
+			 apply_hexa_bonus.c format_literal_bonus.c apply_literal_bonus.c
 BONUS_OBJS := $(addprefix $(OBJDIR)/,$(BONUS_SRCS:.c=.o))
 BONUS_SRCS := $(addprefix $(BONUS_SRCDIR)/,$(BONUS_SRCS))
 
