@@ -74,6 +74,12 @@ typedef struct s_arg
 /* Write formated output to stdout. */
 int		ft_printf(const char *str, ...);
 
+/* Write formated output to specific fd. */
+int		ft_dprintf(int fd, const char *format, ...);
+
+/* Write formated output to specific fd. */
+int		ft_vdprintf(int fd, const char *format, va_list ap);
+
 /* Frees a pointer, if not NULL, and assigns NULL to it. */
 void	safe_free(void **ptr);
 
