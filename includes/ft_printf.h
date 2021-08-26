@@ -89,6 +89,12 @@ int		ft_sprintf(char *buf, const char *format, ...);
 /* Create formated string. */
 int		ft_vsprintf(char *buf, const char *format, va_list ap);
 
+/* Creates and allocates memory for a formated string. */
+int		ft_vasprintf(char **buf, const char *format, va_list ap);
+
+/* Creates and allocates memory for a formated string. */
+int		ft_asprintf(char **buf, const char *format, ...);
+
 /* Frees a pointer, if not NULL, and assigns NULL to it. */
 void	safe_free(void **ptr);
 
