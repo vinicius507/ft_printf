@@ -83,6 +83,12 @@ int		ft_dprintf(int fd, const char *format, ...);
 /* Write formated output to specific fd. */
 int		ft_vdprintf(int fd, const char *format, va_list ap);
 
+/* Create formated string. */
+int		ft_sprintf(char *buf, const char *format, ...);
+
+/* Create formated string. */
+int		ft_vsprintf(char *buf, const char *format, va_list ap);
+
 /* Frees a pointer, if not NULL, and assigns NULL to it. */
 void	safe_free(void **ptr);
 
