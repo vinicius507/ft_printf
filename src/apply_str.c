@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_literal_bonus.c                             :+:      :+:    :+:   */
+/*   apply_str_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/12 19:25:36 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/07/12 19:25:36 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/07/12 14:09:44 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/07/12 14:09:44 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
-char	*format_literal(t_arg *arg)
+int	apply_precision_str(char **str, t_arg *arg)
 {
-	char		*str;
+	char	*res;
 
-	str = ft_strdup("%");
-	if (str == NULL)
-		return (NULL);
-	if (apply_width_literal(&str, arg))
-		return (NULL);
-	arg->printed += ft_strlen(str);
-	return (str);
+	if (arg->precision < 0)
+		return (0);
+	res = ft_substr(*str, 0, arg->precision);
+	safe_free((void **)str);
+	*str = res;
+	if (*str == NULL)
+		return (FT_PRINTF_ERROR);
+	return (0);
 }

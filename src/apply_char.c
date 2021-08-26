@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apply_bonus.c                                      :+:      :+:    :+:   */
+/*   apply_char_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/10 17:14:30 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/07/10 17:14:30 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/07/12 15:56:41 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/07/12 15:56:41 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 static char	*get_pad_w(int size)
 {
 	char	*pad;
 
+	if (size < 0)
+		return (ft_strdup(""));
 	pad = ft_calloc(size + 1, sizeof(char));
 	if (pad == NULL)
 		return (NULL);
@@ -24,26 +26,26 @@ static char	*get_pad_w(int size)
 	return (pad);
 }
 
-int	apply_width(char **str, t_arg *arg)
+int	apply_width_char(char **str, t_arg *arg)
 {
-	int		size;
-	int		pad;
 	char	*res;
 	char	*temp;
 
-	size = ft_strlen(*str);
-	pad = arg->width - size;
-	if (pad <= 0)
+	if (**str != 0)
+	{
+		if (apply_width(str, arg))
+			return (FT_PRINTF_ERROR);
 		return (0);
-	temp = get_pad_w(arg->width - size);
+	}
+	temp = get_pad_w(arg->width - 1);
 	if (arg->flags & LEFT_JUSTIFY)
-		res = ft_strjoin(*str, temp);
+		res = ft_memjoin(*str, temp, 1, ft_strlen(temp) + 1);
 	else
-		res = ft_strjoin(temp, *str);
-	safe_free((void **)str);
+		res = ft_memjoin(temp, *str, ft_strlen(temp), 2);
 	safe_free((void **)&temp);
+	safe_free((void **)str);
 	*str = res;
-	if (res == NULL)
+	if (*str == NULL)
 		return (FT_PRINTF_ERROR);
 	return (0);
 }

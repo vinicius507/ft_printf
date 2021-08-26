@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_literal.c                                   :+:      :+:    :+:   */
+/*   format_literal_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/12 18:00:19 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/07/12 18:00:19 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/07/12 19:25:36 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/07/12 19:25:36 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*format_literal(t_arg *arg)
 	str = ft_strdup("%");
 	if (str == NULL)
 		return (NULL);
-	arg->printed += 1;
+	if (apply_width_literal(&str, arg))
+		return (NULL);
+	arg->printed += ft_strlen(str);
 	return (str);
 }

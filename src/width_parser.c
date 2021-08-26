@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_char_bonus.c                                :+:      :+:    :+:   */
+/*   width_parser_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/12 19:22:27 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/07/12 19:22:27 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/07/09 18:42:17 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/07/09 18:42:17 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
-char	*format_char(t_arg *arg, va_list ap)
+int	width_parser(char **f, va_list ap)
 {
-	char	*res;
+	char	*ptr;
+	int		width;
 
-	res = ft_calloc(2, sizeof(char));
-	res[0] = (unsigned char)va_arg(ap, int);
-	if (apply_width_char(&res, arg))
-		return (NULL);
-	if (arg->width > 0)
-		arg->printed += arg->width;
-	else
-		arg->printed += 1;
-	return (res);
+	ptr = *f;
+	width = 0;
+	if (*ptr && ft_isdigit(*ptr))
+	{
+		width = ft_atoi(ptr);
+		while (*ptr && ft_isdigit(*ptr))
+			ptr++;
+	}
+	else if (*ptr && *ptr == '*')
+	{
+		width = va_arg(ap, int);
+		ptr++;
+	}
+	*f = ptr;
+	return (width);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/06 08:42:32 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/06/06 08:42:32 by vgoncalv         ###   ########.fr       */
+/*   Created: 2021/07/09 18:43:06 by vgoncalv          #+#    #+#             */
+/*   Updated: 2021/07/09 18:43:06 by vgoncalv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_printf(const char *format, ...)
 	while (var != NULL)
 	{
 		arg.printed = var - buf;
-		if (arg_parser(&arg, &var) || format_current(&arg, &buf, var, ap))
+		if (arg_parser(&arg, &var, ap) || format_current(&arg, &buf, var, ap))
 		{
 			arg.printed = FT_PRINTF_ERROR;
 			break ;
