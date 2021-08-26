@@ -74,6 +74,9 @@ typedef struct s_arg
 /* Write formated output to stdout. */
 int		ft_printf(const char *str, ...);
 
+/* Write formated output to stdout. */
+int		ft_vprintf(const char *format, va_list ap);
+
 /* Write formated output to specific fd. */
 int		ft_dprintf(int fd, const char *format, ...);
 

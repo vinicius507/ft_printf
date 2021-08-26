@@ -12,29 +12,21 @@
 
 #include "ft_printf.h"
 
+int	ft_vprintf(const char *format, va_list ap)
+{
+	int	printed;
+
+	printed = ft_vdprintf(1, format, ap);
+	return (printed);
+}
+
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	t_arg	arg;
-	char	*buf;
-	char	*var;
+	int		printed;
 
 	va_start(ap, format);
-	buf = ft_strdup(format);
-	var = ft_strchr(buf, '%');
-	arg.printed = 0;
-	while (var != NULL)
-	{
-		arg.printed = var - buf;
-		if (arg_parser(&arg, &var, ap) || format_current(&arg, &buf, var, ap))
-		{
-			arg.printed = FT_PRINTF_ERROR;
-			break ;
-		}
-		var = ft_strchr(buf + arg.printed, '%');
-	}
-	if (arg.printed != FT_PRINTF_ERROR)
-		arg.printed += ft_strlen(buf + arg.printed);
+	printed = ft_vprintf(format, ap);
 	va_end(ap);
-	return (print_buffer(&buf, &arg));
+	return (printed);
 }
