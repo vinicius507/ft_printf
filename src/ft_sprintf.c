@@ -19,7 +19,7 @@ int	ft_vsprintf(char *buf, const char *format, va_list ap)
 	t_arg	arg;
 
 	dup = ft_strdup(format);
-	var = ft_strchr(buf, '%');
+	var = ft_strchr(dup, '%');
 	arg.printed = 0;
 	while (var != NULL)
 	{
