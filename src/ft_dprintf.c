@@ -32,9 +32,11 @@ int	ft_vdprintf(int fd, const char *format, va_list ap)
 		var = ft_strchr(buf + arg.printed, '%');
 	}
 	if (arg.printed != FT_PRINTF_ERROR)
+	{
 		arg.printed += ft_strlen(buf + arg.printed);
-	write(fd, buf, arg.printed);
-	free(buf);
+		write(fd, buf, arg.printed);
+		free(buf);
+	}
 	return (arg.printed);
 }
 
