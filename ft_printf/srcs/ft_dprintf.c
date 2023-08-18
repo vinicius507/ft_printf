@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <unistd.h>
 
 int	ft_vdprintf(int fd, const char *format, va_list ap)
 {
@@ -34,7 +35,7 @@ int	ft_vdprintf(int fd, const char *format, va_list ap)
 	if (arg.printed != FT_PRINTF_ERROR)
 	{
 		arg.printed += ft_strlen(buf + arg.printed);
-		write(fd, buf, arg.printed);
+		(void)write(fd, buf, arg.printed);
 		free(buf);
 	}
 	return (arg.printed);

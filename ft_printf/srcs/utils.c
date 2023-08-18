@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <unistd.h>
 
 void	safe_free(void **ptr)
 {
@@ -50,7 +51,7 @@ int	hexa_has_alternate(char *str)
 
 int	print_buffer(char **buf, t_arg *arg)
 {
-	write(1, *buf, arg->printed);
+	(void)write(1, *buf, arg->printed);
 	safe_free((void **)buf);
 	return (arg->printed);
 }
