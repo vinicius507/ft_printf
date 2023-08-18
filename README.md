@@ -10,8 +10,8 @@
 </p>
 
 # 42 Printf
-[![build](https://github.com/vinicius507/libft/actions/workflows/build.yml/badge.svg)](https://github.com/vinicius507/libft/actions/workflows/build.yml)
-[![norminette](https://github.com/vinicius507/libft/actions/workflows/norminette.yml/badge.svg)](https://github.com/vinicius507/libft/actions/workflows/norminette.yml)
+[![build](https://github.com/vinicius507/ft_printf/actions/workflows/build.yml/badge.svg)](https://github.com/vinicius507/ft_printf/actions/workflows/build.yml)
+[![norminette](https://github.com/vinicius507/ft_printf/actions/workflows/norminette.yml/badge.svg)](https://github.com/vinicius507/ft_printf/actions/workflows/norminette.yml)
 
 This repository contains my submission to the 42 Printf project for 42 School.
 The goal of this project is to create a library that provides `printf` like utility functions.
