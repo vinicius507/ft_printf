@@ -25,7 +25,11 @@
         f {
           pkgs = import nixpkgs {
             inherit system;
-            overlays = [ft-nix.overlays.norminette];
+            overlays = [
+              ft-nix.overlays.norminette
+              libft.overlays.libft
+              self.overlays.libftprintf
+            ];
           };
         });
   in {
@@ -42,28 +46,19 @@
       };
     });
     packages = forEachSystem ({pkgs}: {
-      default = self.packages.${pkgs.system}.libftprintf;
-      libftprintf = pkgs.stdenv.mkDerivation {
-        pname = "libftprintf";
-        version = "1.0.0";
-        src = ./ft_printf;
-        nativeBuildInputs = with pkgs; [
-          llvmPackages_12.libcxxClang
-        ];
-        buildPhase = ''
-          export LIBFT_PATH="${libft.packages.${pkgs.system}.default}"
-          make
-        '';
-        installPhase = ''
-          mkdir -p $out/lib
-          cp libftprintf.a $out/lib
-          cp -r include $out/include
-        '';
-        meta = with pkgs.lib; {
-          license = licenses.agpl3Only;
-        };
+      default = pkgs.libftprintf;
+      libftprintf = import ./nix/pkgs/libftprintf.nix {
+        inherit (pkgs) lib;
+        inherit (pkgs.llvmPackages_12) stdenv;
+        libftPath = builtins.toString pkgs.libft;
       };
     });
+    overlays = {
+      default = self.overlays.libftprintf;
+      libftprintf = final: _: {
+        libftprintf = self.packages.${final.system}.libftprintf;
+      };
+    };
     devShells = forEachSystem ({pkgs}: let
       mkShell = pkgs.mkShell.override {inherit (pkgs.llvmPackages_12) stdenv;};
     in {
