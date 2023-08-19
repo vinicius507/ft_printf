@@ -1,14 +1,14 @@
 {
   lib,
   stdenv,
-  libftPath,
+  libft,
 }:
 stdenv.mkDerivation {
   pname = "libftprintf";
   version = "1.0.0";
   src = ../../ft_printf;
   buildPhase = ''
-    export LIBFT_PATH="${libftPath}"
+    export LIBFT_PATH="${libft}"
     make
   '';
   installPhase = ''

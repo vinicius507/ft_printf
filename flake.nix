@@ -48,9 +48,8 @@
     packages = forEachSystem ({pkgs}: {
       default = pkgs.libftprintf;
       libftprintf = import ./nix/pkgs/libftprintf.nix {
-        inherit (pkgs) lib;
+        inherit (pkgs) lib libft;
         inherit (pkgs.llvmPackages_12) stdenv;
-        libftPath = builtins.toString pkgs.libft;
       };
     });
     overlays = {
