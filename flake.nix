@@ -1,10 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs";
-    ft-nix = {
-      url = "github:vinicius507/42-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     libft = {
       url = "github:vinicius507/libft";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,7 +9,6 @@
   outputs = {
     self,
     nixpkgs,
-    ft-nix,
     libft,
   }: let
     allSystems = [
@@ -26,8 +21,8 @@
           pkgs = import nixpkgs {
             inherit system;
             overlays = [
-              ft-nix.overlays.norminette
               libft.overlays.libft
+              libft.overlays.devshell
               self.overlays.libftprintf
             ];
           };
@@ -58,10 +53,8 @@
         libftprintf = self.packages.${final.system}.libftprintf;
       };
     };
-    devShells = forEachSystem ({pkgs}: let
-      mkShell = pkgs.mkShell.override {inherit (pkgs.llvmPackages_12) stdenv;};
-    in {
-      default = mkShell {
+    devShells = forEachSystem ({pkgs}: {
+      default = pkgs.mkShell {
         packages = with pkgs; [
           bear
           clang-tools_12
